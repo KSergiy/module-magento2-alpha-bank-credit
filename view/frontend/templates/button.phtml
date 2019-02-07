@@ -1,0 +1,12 @@
+<?php declare(strict_types=1);
+
+$buttonModel = $block->getData('button_model');
+
+?>
+<?php if ($buttonModel->isEnabled()): ?>
+    <?php if ($url = $buttonModel->getUrl()): ?>
+        <a href="<?= $url ?>" class="alpha-bank-credit-link" rel="nofollow" target="_blank">
+            <span><?= $block->escapeHtml($buttonModel->getButtonText()) ?></span>
+        </a>
+    <?php endif; ?>
+<?php endif; ?>
