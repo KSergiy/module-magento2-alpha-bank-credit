@@ -1,5 +1,5 @@
 {
-    "name": "kssoft/magento2-alphaBankCredit",
+    "name": "kssoft/module-alphaBankCredit",
     "description": "Extension for credit from Alpha Bank",
     "require": {
         "php": "~7.0.0||~7.1.0"

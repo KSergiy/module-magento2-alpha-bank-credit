@@ -2,9 +2,11 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <referenceBlock name="product.info.addtocart">
-        <block name="alpha.bank.credit.button" template="KsSoft_AlphaBankCredit::button.phtml">
+        <block name="alpha.bank.credit.button"
+               ifconfig="alpha_bank_credit/base/enable"
+               template="KsSoft_AlphaBankCredit::button.phtml">
             <arguments>
-                <argument name="button_model" xsi:type="object">KsSoft\AlphaBankCredit\Block\CreditButton</argument>
+                <argument name="button_model" xsi:type="object">KsSoft\AlphaBankCredit\ViewModel\CreditButton</argument>
             </arguments>
         </block>
     </referenceBlock>

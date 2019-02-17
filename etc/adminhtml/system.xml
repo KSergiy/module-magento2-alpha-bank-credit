@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="kssoft" translate="label" sortOrder="500">
             <label>KsSoft</label>
         </tab>
-
         <section id="alpha_bank_credit" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Alpha Bank Credit</label>
             <tab>kssoft</tab>
             <resource>KsSoft_AlphaBankCredit::alpha_bank_credit</resource>
             <group id="base" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Base Settings</label>
-
                 <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show Button</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

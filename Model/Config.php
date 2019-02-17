@@ -1,13 +1,16 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace KsSoft\AlphaBankCredit\Model;
 
-use KsSoft\AlphaBankCredit\Api\ConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
-class Config implements ConfigInterface
+class Config
 {
+    const URL = 'https://alfabank.ua/credit/bpk-new/?product=%s&price=%s&partner=%s';
+
+    const XML_CONFIG_GENERAL = 'alpha_bank_credit/base/';
+
     /**
      * @var ScopeConfigInterface
      */
