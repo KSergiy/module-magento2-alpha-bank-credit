@@ -1,10 +1,13 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
 
 namespace KsSoft\AlphaBankCredit\ViewModel;
 
-use Magento\Framework\View\Element\Block\ArgumentInterface,
-    Magento\Framework\Registry;
-use KsSoft\AlphaBankCredit\Model\Config;
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Helper\Data;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
+use KsSoft\AlphaBankCredit\Model\ConfigInterface;
 
 /**
  * Class CreditButton
@@ -14,54 +17,54 @@ use KsSoft\AlphaBankCredit\Model\Config;
 class CreditButton implements ArgumentInterface
 {
     /**
-     * @var Config
+     * @var ConfigInterface
      */
     private $config;
 
     /**
-     * @var Registry
+     * @var Data
      */
-    private $registry;
+    private $catalogHelper;
 
     /**
      * CreditButton constructor.
-     * @param Config $config
-     * @param Registry $registry
+     * @param ConfigInterface $config
+     * @param Data $catalogHelper
      */
     public function __construct(
-        Config $config,
-        Registry $registry
+        ConfigInterface $config,
+        Data $catalogHelper
     ) {
         $this->config = $config;
-        $this->registry = $registry;
+        $this->catalogHelper = $catalogHelper;
     }
 
     /**
      * Is enabled
      *
-     * @return mixed
+     * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
-        return ($this->config->isEnabled() && !empty($this->config->getBaseParam('partner_id')));
+        return ($this->config->isEnabled() && !empty($this->config->getPartnerId()));
     }
 
     /**
      * Get button text
      *
-     * @return mixed
+     * @return null|string
      */
-    public function getButtonText()
+    public function getButtonText(): ?string
     {
-        return $this->config->getBaseParam('button_text');
+        return $this->config->getButtonText();
     }
 
     /**
      * Get URL
      *
-     * @return string
+     * @return null|string
      */
-    public function getUrl()
+    public function getUrl(): ?string
     {
         if (!$product = $this->getProduct()) {
             return null;
@@ -69,20 +72,18 @@ class CreditButton implements ArgumentInterface
 
         $productTitle = $product->getName();
         $productPrice = $product->getFinalPrice();
-        $partnerId = $this->config->getBaseParam('partner_id');
+        $partnerId = $this->config->getPartnerId();
 
-        $url = sprintf(Config::URL, $productTitle, $productPrice, $partnerId);
-
-        return $url;
+        return sprintf(ConfigInterface::URL, $productTitle, $productPrice, $partnerId);
     }
 
     /**
      * Get product
      *
-     * @return mixed
+     * @return null|ProductInterface
      */
-    private function getProduct()
+    private function getProduct(): ?ProductInterface
     {
-        return $this->registry->registry('product');
+        return $this->catalogHelper->getProduct();
     }
 }

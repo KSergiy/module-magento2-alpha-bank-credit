@@ -3,10 +3,8 @@
 $buttonModel = $block->getData('button_model');
 
 ?>
-<?php if ($buttonModel->isEnabled()): ?>
-    <?php if ($url = $buttonModel->getUrl()): ?>
-        <a href="<?= $url ?>" class="alpha-bank-credit-link" rel="nofollow" target="_blank">
-            <span><?= $block->escapeHtml($buttonModel->getButtonText()) ?></span>
-        </a>
-    <?php endif; ?>
+<?php if ($buttonModel->isEnabled() && $url = $buttonModel->getUrl()): ?>
+    <a href="<?= $block->escapeUrl($url) ?>" class="alpha-bank-credit-link" rel="nofollow" target="_blank">
+        <span><?= $block->escapeHtml($buttonModel->getButtonText()) ?></span>
+    </a>
 <?php endif; ?>

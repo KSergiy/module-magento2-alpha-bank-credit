@@ -1,16 +1,14 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
 
 namespace KsSoft\AlphaBankCredit\Model;
 
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
-class Config
+class Config implements ConfigInterface
 {
-    const URL = 'https://alfabank.ua/credit/bpk-new/?product=%s&price=%s&partner=%s';
-
-    const XML_CONFIG_GENERAL = 'alpha_bank_credit/base/';
-
     /**
      * @var ScopeConfigInterface
      */
@@ -30,21 +28,36 @@ class Config
     /**
      * {@inheritdoc}
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return $this->scopeConfig->isSetFlag(
-            self::XML_CONFIG_GENERAL . 'enable',
+            self::XML_CONFIG_GENERAL_ENABLE,
             ScopeInterface::SCOPE_STORE
         );
     }
 
     /**
-     * {@inheritdoc}
+     * Get partner ID
+     *
+     * @return null|string
      */
-    public function getBaseParam($param)
+    public function getPartnerId(): ?string
     {
         return $this->scopeConfig->getValue(
-            self::XML_CONFIG_GENERAL . $param,
+            self::XML_CONFIG_GENERAL_PARTNER_ID,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get button text
+     *
+     * @return null|string
+     */
+    public function getButtonText(): ?string
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_CONFIG_GENERAL_BUTTON_TEXT,
             ScopeInterface::SCOPE_STORE
         );
     }
