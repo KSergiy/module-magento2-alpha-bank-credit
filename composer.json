@@ -1,11 +1,11 @@
 {
-    "name": "kssoft/module-alphaBankCredit",
-    "description": "Extension for credit from Alpha Bank",
+    "name": "kssoft/module-magento2-alpha-bank-credit",
+    "description": "Magento 2 extension for credit from Alpha Bank",
     "require": {
-        "php": "~7.0.0||~7.1.0||~7.2.0"
+        "php": "~7.0.0||~7.1.0||~7.2.0||~7.3.0"
     },
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
